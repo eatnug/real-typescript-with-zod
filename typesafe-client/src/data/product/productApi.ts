@@ -1,24 +1,30 @@
 import axios from "axios";
-
+import { z } from 'zod';
 interface Response<T> {
     data: T
 }
 
-export interface Product {
-    id: number;
-    name: string;
-    price: number;
-    shippingFee: number;
-    reviews: Array<Review>
-}
+const ReviewSchema = z.object({
+    id: z.number(),
+    content: z.string(),
+})
+export type Review = z.infer<typeof ReviewSchema>;
 
-export interface Review {
-    id: number;
-    content: string;
-}
+
+const ProductSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    price: z.number(),
+    shippingFee: z.number(),
+    reviews: z.array(ReviewSchema)
+});
+
+export type Product = z.infer<typeof ProductSchema>;
+
 
 async function getProduct(id: number) {
-    return (await axios.get<Response<Product>>(`http://localhost:8080/products/${id}`)).data.data
+    const product = (await axios.get<Response<Product>>(`http://localhost:8080/products/${id}`)).data.data
+    return ProductSchema.parse(product)
 }
 
 async function purchase(id: number, totalPrice: number) {
