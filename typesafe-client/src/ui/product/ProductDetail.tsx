@@ -21,11 +21,11 @@ export default function ProductDetail({ id }:Props) {
         </div>
         <div style={styles.row}>
             <p style={styles.label}>가격 : </p>
-            <p style={styles.value}>{product.price}</p>
+            <p style={styles.value}>{product.price}원</p>
         </div>
         <div style={styles.row}>
             <p style={styles.label}>배송비 : </p>
-            <p style={styles.value}>{product.shippingFee}</p>
+            <p style={styles.value}>{product.shippingFee}원</p>
         </div>
         <div style={styles.row}>
             <p style={styles.label}>리뷰 : </p>
@@ -34,7 +34,7 @@ export default function ProductDetail({ id }:Props) {
         </div>
 
         <button onClick={() => productService.purchase(product).then(data => alert(data))}>
-            {productService.getTotalPrice(product)} 결제하기
+            {productService.getTotalPrice(product)}원 결제하기
         </button>
         
     </div>

@@ -6,7 +6,7 @@ function getProduct(id: number) {
 }
 
 function purchase(id: number, totalPrice: number) {
-    return `${id}번 상품에 대한 비용 ${totalPrice}이 결제되었습니다.`
+    return `${id}번 상품에 대한 비용 ${totalPrice}원이 결제되었습니다.`
 }
 
 export default {
