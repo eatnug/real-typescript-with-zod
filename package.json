@@ -1,8 +1,16 @@
 {
+  "scripts": {
+    "start:client": "cd typesafe-client && yarn dev",
+    "start:server": "cd typesafe-server && yarn dev",
+    "start": "concurrently \"yarn start:client\" \"yarn start:server\""
+  },
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.0",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
