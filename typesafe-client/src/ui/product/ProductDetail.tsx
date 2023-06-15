@@ -7,7 +7,15 @@ interface Props {
 }
 
 export default function ProductDetail({ id }:Props) {
-    const product = productService.getProduct(id)
+    const {product, error} = productService.getProduct(id)
+
+
+    if(error) {
+        return <div style={styles.wrapper}>
+            <p>오류가 발생해 상품 정보를 불러오지 못했습니다.</p>
+            <p>계속해서 발생할 경우 고객센터로 문의해주세요.😞</p>
+        </div>
+    }
 
     if(!product) {
         return <>loading data...</>

@@ -3,15 +3,16 @@ import productApi, { Product } from "@/data/product/productApi";
 
 function useProduct(id: number) {
     const [product, setProduct] = useState<Product>()
+    const [error, setError] = useState<Error>()
 
     useEffect(() => {
         productApi
             .getProduct(id)
             .then(product => setProduct(product))
-            .catch(error => { alert(`오류가 발생했습니다. ${error}`) })
+            .catch(error => { setError(error) })
     }, [id])
 
-    return product
+    return { product, error }
 }
 
 export default {
